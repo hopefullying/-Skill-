@@ -48,16 +48,16 @@ qige-geopolitics/
 
 ## 8 个 skill 一览
 
-| skill                           | 用途                                           |
-| ------------------------------- | ---------------------------------------------- |
-| `cos-reverse-modeling`          | 从任意评论员文本反向建模认知操作系统（元方法） |
-| `map-first-geostrategy`         | 地图优先：位置→战略价值→必争逻辑→宿敌推演      |
-| `industrial-base-power-check`   | 工业地基评估：电力/重工业/供应链/纵深          |
-| `hegemony-collapse-chain`       | 霸权串行链：军事→美元→资本，纸老虎验证         |
-| `great-power-master-switch`     | 中美总开关：区域事件外溢归因                   |
-| `proxy-war-cost-trace`          | 代理人成本账：谁出钱、谁出人、谁买单           |
-| `attrition-long-game`           | 消耗战/马拉松：强者拖、弱者赌                  |
-| `structural-necessity-forecast` | 结构必然性预测：数退路判必打/必崩/必换政权     |
+| skill | 用途 |
+|---|---|
+| `cos-reverse-modeling` | 从任意评论员文本反向建模认知操作系统（元方法） |
+| `map-first-geostrategy` | 地图优先：位置→战略价值→必争逻辑→宿敌推演 |
+| `industrial-base-power-check` | 工业地基评估：电力/重工业/供应链/纵深 |
+| `hegemony-collapse-chain` | 霸权串行链：军事→美元→资本，纸老虎验证 |
+| `great-power-master-switch` | 中美总开关：区域事件外溢归因 |
+| `proxy-war-cost-trace` | 代理人成本账：谁出钱、谁出人、谁买单 |
+| `attrition-long-game` | 消耗战/马拉松：强者拖、弱者赌 |
+| `structural-necessity-forecast` | 结构必然性预测：数退路判必打/必崩/必换政权 |
 
 ## 安全与质量说明
 
