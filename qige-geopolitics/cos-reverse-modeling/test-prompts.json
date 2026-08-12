@@ -1,0 +1,52 @@
+{
+  "skill": "cos-reverse-modeling",
+  "version": "0.1.0",
+  "source_book": "《七哥论国际：直播文字稿 2023-2026》 — 主播“七哥”",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "把这批某主播的文字稿反向建模成他的认知操作系统，我要能预测他对新事件的态度",
+      "expected_behavior": "激活 cos-reverse-modeling，执行清洗→频次统计→句式抽取→规则化→盲区扫描",
+      "notes": "正面场景: 明确要求反向建模认知系统"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "他为什么总是这么判断？帮我提炼这位评论员的分析框架和预测逻辑",
+      "expected_behavior": "激活 cos-reverse-modeling，输出框架/变量权重/预测模式",
+      "notes": "正面场景: 提炼分析框架"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "reverse-engineer how this pundit thinks from his transcripts, so I can predict his takes",
+      "expected_behavior": "激活 cos-reverse-modeling（英文 trigger）",
+      "notes": "正面场景: 英文请求"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "帮我把这段采访总结成三点要点",
+      "expected_behavior": "不应激活本 skill（单文本简单摘要）",
+      "notes": "诱饵: 摘要而非模型化"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "用地图分析为什么伊朗是战略要地",
+      "expected_behavior": "不应激活本 skill，应激活 map-first-geostrategy",
+      "notes": "跨 skill 混淆诱饵: 分析世界而非分析人"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "我只有他最近两篇文章，能看出他的世界观吗？",
+      "expected_behavior": "触发但明确样本不足：可做低置信度初稿，标注'偶发观点'，建议补充语料",
+      "notes": "边界: 语料量不足时的降级路径"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case；含跨 skill 混淆诱饵。"
+}
