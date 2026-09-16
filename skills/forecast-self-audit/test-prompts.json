@@ -1,0 +1,52 @@
+{
+  "skill": "forecast-self-audit",
+  "version": "0.1.0",
+  "source_book": "《七哥论国际：直播文字稿 2023-2026》 — 主播 七哥",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "我判断它三个月内必崩，你觉得这判断靠谱吗？",
+      "expected_behavior": "激活本 skill，先补'除非…'失效条件，再查是否单变量推结论",
+      "notes": "典型正面：给强判断装刹车"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "它经济数据都这样了，为什么还不崩？",
+      "expected_behavior": "激活本 skill，指出经济账不足以推崩溃，需补政治生存与承受意志",
+      "notes": "典型正面：经济账不足"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "二十年后世界会是什么样？",
+      "expected_behavior": "激活本 skill，拒绝远期具体图景，同时说明基本盘类长期趋势仍可谈",
+      "notes": "典型正面：尺度区分"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "帮我把这篇分析做成PPT。",
+      "expected_behavior": "不激活，本 skill 不做格式转换",
+      "notes": "诱饵：都涉及'分析'字样"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "这条新闻要不要改我的判断？",
+      "expected_behavior": "不激活本 skill，应激活 causal-chain-consistency",
+      "notes": "跨 skill 混淆诱饵：都涉及判断修订"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "你刚才说这事'必然发生'，那怎么才算你错了？",
+      "expected_behavior": "可激活，必须给出可检验的失效条件；若给不出，应承认原判断不可证伪",
+      "notes": "边界：自审对象是刚刚说出的强判断"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case；should_not_trigger 容错为 0，且至少 1 条是同书兄弟 skill 的混淆诱饵。"
+}

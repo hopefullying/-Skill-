@@ -1,0 +1,52 @@
+{
+  "skill": "timing-window-cadence",
+  "version": "0.1.0",
+  "source_book": "《七哥论国际：直播文字稿 2023-2026》 — 主播 七哥",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "中东这仗接下来什么时候升级？给我个时间窗口。",
+      "expected_behavior": "激活本 skill，产出硬节点日历（选举/换届/库存）+ 下一个动作窗口 + 触发条件",
+      "notes": "典型正面：问的是升级时点"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "谈判谈了十几轮还没结果，到底谁在拖？",
+      "expected_behavior": "激活本 skill，把谈判期按消耗战处理，判定谁的时间压力更大、谁等不了",
+      "notes": "典型正面：谈判即消耗"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "它三艘航母摆在那儿又不打，是虚张声势吗？",
+      "expected_behavior": "激活本 skill，算维持成本，把撤离读作意志衰减信号",
+      "notes": "典型正面：成本推意志"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "帮我算一下这家公司下季度的营收预测。",
+      "expected_behavior": "不激活，本 skill 只处理地缘/战略时间窗，不做财务预测",
+      "notes": "诱饵：都是'预测时点'但领域不符"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "对方突然要谈判，它到底带着什么牌来的？",
+      "expected_behavior": "不激活本 skill，应激活 adversary-intent-read",
+      "notes": "跨 skill 混淆诱饵：谈判场景但问的是意图读牌"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "现在按兵不动是不是就错过窗口了？",
+      "expected_behavior": "可激活，但必须同时给出'拖'的反时限（对手完成武装/整合的时点），不能只答'继续拖'",
+      "notes": "边界：既是时间窗判定，也涉及压轴待变的边界"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case；should_not_trigger 容错为 0，且至少 1 条是同书兄弟 skill 的混淆诱饵。"
+}

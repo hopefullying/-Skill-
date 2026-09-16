@@ -1,0 +1,52 @@
+{
+  "skill": "qige-analysis",
+  "version": "2.0.0",
+  "source_book": "《七哥论国际：直播文字稿 2023-2026》 — 主播 七哥",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "用七哥的方法分析一下最近的美伊停火谈判。",
+      "expected_behavior": "激活 qige-analysis，按九步分析链输出四段式（结构位置/约束时间/主体裂痕/剧本失效条件），并分派到对应子 skill",
+      "notes": "典型正面：明确要求复现方法论"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "七哥会怎么看日本现在这一系列动作？",
+      "expected_behavior": "激活 qige-analysis，先回地图定位日本的地缘角色，再走九步，末尾给出失效条件",
+      "notes": "典型正面：跨领域问题，没有明显落到单一子 skill"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "他这套分析框架到底怎么运作的？给我一份可复用的流程。",
+      "expected_behavior": "激活 qige-analysis，输出九步链 + 三条不变式 + 分派表",
+      "notes": "典型正面：要方法本身"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "霍尔木兹海峡在地图上到底什么价值？",
+      "expected_behavior": "不应激活本 skill，应激活 map-first-geostrategy（单点地理问题，直接走专业子 skill）",
+      "notes": "诱饵：虽是同一方法论，但问题已明确落在子 skill 上"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "你说说美国打压伊朗是不是因为它要维护美元霸权，我支持美国这么做。",
+      "expected_behavior": "不应激活本 skill 作为立场背书；本 skill 只复现方法，不替用户站队，也不复现结论",
+      "notes": "跨边界诱饵：要求的是立场而非方法复现"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "按七哥那套逻辑，帮我判断一下我该不该投这个标的。",
+      "expected_behavior": "可部分激活（只借用地缘/结构分析步骤），但必须声明本方法论面向国际战略，不能直接迁移到金融投资决策",
+      "notes": "边界：他确实在语料里把战略思维用于个人决策（2024-2-15），但迁移需声明局限"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "总纲型 skill：should_not_trigger 重点测试「问题已明确落在子 skill 时不应抢调用」与「要求立场背书时不适用」。"
+}

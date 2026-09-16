@@ -1,0 +1,52 @@
+{
+  "skill": "coalition-fracture-index",
+  "version": "0.1.0",
+  "source_book": "《七哥论国际：直播文字稿 2023-2026》 — 主播 七哥",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "这个同盟还能撑多久？",
+      "expected_behavior": "激活本 skill，找信用锚点与第一道防线，输出最先裂开的环节与多米诺顺序",
+      "notes": "典型正面：同盟裂痕排序"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "它拉着十几个国家围剿一个，是不是稳赢？",
+      "expected_behavior": "激活本 skill，做反围剿检验——看发起者自己是否走不掉",
+      "notes": "典型正面：反围剿识别"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "丢这几块地，对霸权算实质伤害吗？",
+      "expected_behavior": "激活本 skill，用'口子'而非面积作判据，并上推防线层级",
+      "notes": "典型正面：口子判据"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "帮我统计这个联盟成员国的GDP总和。",
+      "expected_behavior": "不激活，本 skill 不做数据统计",
+      "notes": "诱饵：涉及联盟但需求是数据"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "现在要不要给它军援？",
+      "expected_behavior": "不激活本 skill，应激活 patronage-value-grading",
+      "notes": "跨 skill 混淆诱饵：都涉及盟友支持问题"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "它是不是一定会抛弃某个盟友？",
+      "expected_behavior": "可激活，但'不可退出'分析只能给排序与触发信号，不能给必然结论；必须标注锚点判断可能的错误",
+      "notes": "边界：从裂痕到必然抛弃的跳跃"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case；should_not_trigger 容错为 0，且至少 1 条是同书兄弟 skill 的混淆诱饵。"
+}

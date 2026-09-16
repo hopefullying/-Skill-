@@ -1,0 +1,52 @@
+{
+  "skill": "causal-chain-consistency",
+  "version": "0.1.0",
+  "source_book": "《七哥论国际：直播文字稿 2023-2026》 — 主播 七哥",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "今天这条新闻要不要改我的判断？",
+      "expected_behavior": "激活本 skill，做来龙去脉闭合检查，输出'改/不改/挂起'三选一",
+      "notes": "典型正面：新闻 vs 结构"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "各方消息互相打架，该信哪个？",
+      "expected_behavior": "激活本 skill，把口径混乱本身当信号，只解读混乱不解读内容",
+      "notes": "典型正面：口径混乱元规则"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "是不是有什么幕后黑手在操盘？",
+      "expected_behavior": "激活本 skill，检查是否属于'明牌结构'（阳谋），并提示牌已亮完时改比综合实力",
+      "notes": "典型正面：反阴谋论偏好"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "帮我把这份新闻稿润色一下。",
+      "expected_behavior": "不激活，本 skill 不做文本处理",
+      "notes": "诱饵：都涉及新闻文本"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "这个判断在什么情况下会被推翻？",
+      "expected_behavior": "不激活本 skill，应激活 forecast-self-audit",
+      "notes": "跨 skill 混淆诱饵：都涉及证伪，但那条是给单条预测装刹车"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "三年前它说过不干涉，现在它介入了，是不是背信？",
+      "expected_behavior": "可激活，但须先标时间并核对当时局势是否变化，不能直接用旧表态定罪",
+      "notes": "边界：表态时效与道德判断混淆"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case；should_not_trigger 容错为 0，且至少 1 条是同书兄弟 skill 的混淆诱饵。"
+}

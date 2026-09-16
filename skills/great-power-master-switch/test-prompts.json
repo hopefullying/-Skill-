@@ -1,0 +1,52 @@
+{
+  "skill": "great-power-master-switch",
+  "version": "0.1.0",
+  "source_book": "《七哥论国际：直播文字稿 2023-2026》 — 主播“七哥”",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "非洲小国政变，背后是不是大国博弈？",
+      "expected_behavior": "激活 great-power-master-switch，做外溢检查与利益打分",
+      "notes": "正面场景: 区域事件归因"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "这件事对中美谁更有利？",
+      "expected_behavior": "激活 great-power-master-switch，输出受益方/买单方/道德牌",
+      "notes": "正面场景: 总开关问题"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "is this regional conflict driven by US-China rivalry?",
+      "expected_behavior": "激活 great-power-master-switch（英文 trigger）",
+      "notes": "正面场景: 英文请求"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "帮我总结一下欧盟新出台法规的要点",
+      "expected_behavior": "不应激活本 skill（信息总结）",
+      "notes": "诱饵: 非博弈分析"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "这场内战到底谁在出钱、谁在出人？",
+      "expected_behavior": "不应激活本 skill，应激活 proxy-war-cost-trace",
+      "notes": "跨 skill 混淆诱饵: 成本/玩家矩阵而非归因"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "某国国内选举是纯内政，但结果会影响外交——该用哪个框架？",
+      "expected_behavior": "先内政后外交衔接：明确不把选举当外溢，再把外交影响纳入总开关分析",
+      "notes": "边界: 内外衔接"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case；含跨 skill 混淆诱饵。"
+}

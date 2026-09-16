@@ -1,0 +1,52 @@
+{
+  "skill": "strategy-tactics-audit",
+  "version": "0.1.0",
+  "source_book": "《七哥论国际：直播文字稿 2023-2026》 — 主播 七哥",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "它这次偷袭很成功，是不是就赢了？",
+      "expected_behavior": "激活本 skill，分战术/战略两栏打分，并检查主动权与结束权归属",
+      "notes": "典型正面：战术成功≠战略成功"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "两边谁占上风？",
+      "expected_behavior": "激活本 skill，检查谁在设定节奏、谁被迫应对",
+      "notes": "典型正面：节奏归属"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "这套制度到底是优势还是包袱？",
+      "expected_behavior": "激活本 skill，摘掉军事/货币/掠夺三项外部红利后算制度成本账",
+      "notes": "典型正面：制度成本账"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "帮我评估这条产线的良率改进效果。",
+      "expected_behavior": "不激活，本 skill 面向大国战略评估，不用于工业技术评估",
+      "notes": "诱饵：都叫'评估'"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "它为什么突然要谈判？",
+      "expected_behavior": "不激活本 skill，应激活 adversary-intent-read",
+      "notes": "跨 skill 混淆诱饵：都涉及对手行为"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "他在战场上明明占优，你为什么说他输了？",
+      "expected_behavior": "可激活，但必须写明'战略上赢了'的证伪条件与期限，避免不可证伪",
+      "notes": "边界：最容易变成万能话术的地方"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case；should_not_trigger 容错为 0，且至少 1 条是同书兄弟 skill 的混淆诱饵。"
+}

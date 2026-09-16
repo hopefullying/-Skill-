@@ -1,0 +1,420 @@
+{
+  "family": "qige-guolunji",
+  "family_version": "2.0.0",
+  "display_name": "七哥论国际 · 分析方法论 Skill 集",
+  "summary": "把一位国际时评主播在 89 场直播（148.6 万字）中反复使用的分析方法，逆向整理成 16 个可被 AI agent 直接调用的原子化 skill。",
+  "source_book": "《七哥论国际：直播文字稿 2023-2026》 主播 七哥",
+  "corpus": {
+    "documents": 89,
+    "characters": 1485538,
+    "period": "2023-12-22 ~ 2026-09-15",
+    "raw_text_included": false
+  },
+  "license": "CC-BY-NC-SA-4.0",
+  "skill_count": 16,
+  "entry_skill": "qige-analysis",
+  "layers": {
+    "entry": "入口/路由器",
+    "orientation": "定位层",
+    "constraint": "约束层",
+    "intent": "读牌层",
+    "actors": "主体层",
+    "assessment": "评估与收场层"
+  },
+  "quality": {
+    "candidates_extracted": 148,
+    "quotes_verified": "160/160 出处坐标回查通过",
+    "routing_test": {
+      "round1": "88/96",
+      "round2": "92/96",
+      "decoy_pass": "32/32"
+    },
+    "vetting": "0 red flags (md+json only)",
+    "verbatim_overlap_with_corpus": "0（20 字窗口全量比对）",
+    "quotes_included": false
+  },
+  "installation": {
+    "codex": "复制 skills/* 到 ~/.codex/skills/",
+    "plugin": ".codex-plugin/plugin.json 可直接作为 Codex 插件使用"
+  },
+  "skills": [
+    {
+      "slug": "adversary-intent-read",
+      "name": "adversary-intent-read",
+      "title": "对手意图与底牌读取",
+      "layer": "intent",
+      "origin": "v2",
+      "description": "",
+      "entrypoint": "skills/adversary-intent-read/SKILL.md",
+      "test_prompts": "skills/adversary-intent-read/test-prompts.json",
+      "test_case_count": 6,
+      "minimum_pass_rate": 0.8,
+      "tags": [
+        "intent",
+        "signaling",
+        "deception",
+        "negotiation",
+        "probing"
+      ],
+      "sample_prompts": [
+        "它突然封锁海峡，到底想测什么？",
+        "他今天说和伊朗妥协，昨天说要把伊朗打服，哪个是真的？",
+        "它最厉害的那个手段为什么一直不用？"
+      ]
+    },
+    {
+      "slug": "attrition-long-game",
+      "name": "attrition-long-game",
+      "title": "消耗战与马拉松时间观",
+      "layer": "constraint",
+      "origin": "v1",
+      "description": "",
+      "entrypoint": "skills/attrition-long-game/SKILL.md",
+      "test_prompts": "skills/attrition-long-game/test-prompts.json",
+      "test_case_count": 6,
+      "minimum_pass_rate": 0.8,
+      "tags": [
+        "attrition",
+        "long-game",
+        "patience",
+        "tempo"
+      ],
+      "sample_prompts": [
+        "中美科技战谁能耗得起？",
+        "对方最近一直加码，是不是急了？",
+        "who can outlast whom in this long game?"
+      ]
+    },
+    {
+      "slug": "causal-chain-consistency",
+      "name": "causal-chain-consistency",
+      "title": "来龙去脉一致性检验",
+      "layer": "intent",
+      "origin": "v2",
+      "description": "",
+      "entrypoint": "skills/causal-chain-consistency/SKILL.md",
+      "test_prompts": "skills/causal-chain-consistency/test-prompts.json",
+      "test_case_count": 6,
+      "minimum_pass_rate": 0.8,
+      "tags": [
+        "epistemics",
+        "causal-chain",
+        "news",
+        "falsifiability",
+        "meta"
+      ],
+      "sample_prompts": [
+        "今天这条新闻要不要改我的判断？",
+        "各方消息互相打架，该信哪个？",
+        "是不是有什么幕后黑手在操盘？"
+      ]
+    },
+    {
+      "slug": "coalition-fracture-index",
+      "name": "coalition-fracture-index",
+      "title": "同盟裂痕与反围剿识别",
+      "layer": "actors",
+      "origin": "v2",
+      "description": "",
+      "entrypoint": "skills/coalition-fracture-index/SKILL.md",
+      "test_prompts": "skills/coalition-fracture-index/test-prompts.json",
+      "test_case_count": 6,
+      "minimum_pass_rate": 0.8,
+      "tags": [
+        "alliance",
+        "coalition",
+        "deterrence",
+        "credibility",
+        "fragmentation"
+      ],
+      "sample_prompts": [
+        "这个同盟还能撑多久？",
+        "它拉着十几个国家围剿一个，是不是稳赢？",
+        "丢这几块地，对霸权算实质伤害吗？"
+      ]
+    },
+    {
+      "slug": "endgame-scripting",
+      "name": "endgame-scripting",
+      "title": "剧本化推演（终局收敛）",
+      "layer": "assessment",
+      "origin": "v2",
+      "description": "",
+      "entrypoint": "skills/endgame-scripting/SKILL.md",
+      "test_prompts": "skills/endgame-scripting/test-prompts.json",
+      "test_case_count": 6,
+      "minimum_pass_rate": 0.8,
+      "tags": [
+        "endgame",
+        "scenario",
+        "scripting",
+        "coalition",
+        "sequencing"
+      ],
+      "sample_prompts": [
+        "这场消耗战最后会怎么收场？",
+        "美国打不赢一个地区国家算不算输？",
+        "占了上风还要不要给对方台阶？"
+      ]
+    },
+    {
+      "slug": "forecast-self-audit",
+      "name": "forecast-self-audit",
+      "title": "预测自审与证伪",
+      "layer": "intent",
+      "origin": "v2",
+      "description": "",
+      "entrypoint": "skills/forecast-self-audit/SKILL.md",
+      "test_prompts": "skills/forecast-self-audit/test-prompts.json",
+      "test_case_count": 6,
+      "minimum_pass_rate": 0.8,
+      "tags": [
+        "falsifiability",
+        "bias",
+        "self-audit",
+        "epistemics"
+      ],
+      "sample_prompts": [
+        "我判断它三个月内必崩，你觉得这判断靠谱吗？",
+        "它经济数据都这样了，为什么还不崩？",
+        "二十年后世界会是什么样？"
+      ]
+    },
+    {
+      "slug": "great-power-master-switch",
+      "name": "great-power-master-switch",
+      "title": "中美总开关/大格局归因",
+      "layer": "orientation",
+      "origin": "v1",
+      "description": "",
+      "entrypoint": "skills/great-power-master-switch/SKILL.md",
+      "test_prompts": "skills/great-power-master-switch/test-prompts.json",
+      "test_case_count": 6,
+      "minimum_pass_rate": 0.8,
+      "tags": [
+        "great-power",
+        "us-china",
+        "attribution",
+        "chessboard"
+      ],
+      "sample_prompts": [
+        "非洲小国政变，背后是不是大国博弈？",
+        "这件事对中美谁更有利？",
+        "is this regional conflict driven by US-China rivalry?"
+      ]
+    },
+    {
+      "slug": "hegemony-collapse-chain",
+      "name": "hegemony-collapse-chain",
+      "title": "霸权串行链与纸老虎验证",
+      "layer": "assessment",
+      "origin": "v1",
+      "description": "",
+      "entrypoint": "skills/hegemony-collapse-chain/SKILL.md",
+      "test_prompts": "skills/hegemony-collapse-chain/test-prompts.json",
+      "test_case_count": 6,
+      "minimum_pass_rate": 0.8,
+      "tags": [
+        "hegemony",
+        "deterrence",
+        "dollar",
+        "collapse"
+      ],
+      "sample_prompts": [
+        "美国霸权还能撑多久？",
+        "美元会不会崩？石油美元体系还稳吗？",
+        "is the US a paper tiger now?"
+      ]
+    },
+    {
+      "slug": "industrial-base-power-check",
+      "name": "industrial-base-power-check",
+      "title": "工业体系国力评估",
+      "layer": "constraint",
+      "origin": "v1",
+      "description": "",
+      "entrypoint": "skills/industrial-base-power-check/SKILL.md",
+      "test_prompts": "skills/industrial-base-power-check/test-prompts.json",
+      "test_case_count": 6,
+      "minimum_pass_rate": 0.8,
+      "tags": [
+        "industrial-base",
+        "supply-chain",
+        "national-power",
+        "sanctions"
+      ],
+      "sample_prompts": [
+        "越南能不能替代中国成为世界工厂？",
+        "制裁俄罗斯到底有没有用？",
+        "can India take over global manufacturing from China?"
+      ]
+    },
+    {
+      "slug": "map-first-geostrategy",
+      "name": "map-first-geostrategy",
+      "title": "地图优先的地理位势分析",
+      "layer": "orientation",
+      "origin": "v1",
+      "description": "",
+      "entrypoint": "skills/map-first-geostrategy/SKILL.md",
+      "test_prompts": "skills/map-first-geostrategy/test-prompts.json",
+      "test_case_count": 6,
+      "minimum_pass_rate": 0.8,
+      "tags": [
+        "geography",
+        "chokepoint",
+        "determinism",
+        "strategy"
+      ],
+      "sample_prompts": [
+        "霍尔木兹海峡为什么这么重要？",
+        "一个夹在中俄之间的内陆国，地理位置会怎样影响它的命运？",
+        "why is the Taiwan Strait strategically important?"
+      ]
+    },
+    {
+      "slug": "patronage-value-grading",
+      "name": "patronage-value-grading",
+      "title": "统战价值与代理人分级",
+      "layer": "actors",
+      "origin": "v2",
+      "description": "",
+      "entrypoint": "skills/patronage-value-grading/SKILL.md",
+      "test_prompts": "skills/patronage-value-grading/test-prompts.json",
+      "test_case_count": 6,
+      "minimum_pass_rate": 0.8,
+      "tags": [
+        "proxy",
+        "patronage",
+        "coalition",
+        "burden-sharing",
+        "grading"
+      ],
+      "sample_prompts": [
+        "现在要不要给它军援？",
+        "周边这个国家该拉拢还是该打压？",
+        "这场消耗最后谁付账？"
+      ]
+    },
+    {
+      "slug": "proxy-war-cost-trace",
+      "name": "proxy-war-cost-trace",
+      "title": "代理人战争与成本账",
+      "layer": "actors",
+      "origin": "v1",
+      "description": "",
+      "entrypoint": "skills/proxy-war-cost-trace/SKILL.md",
+      "test_prompts": "skills/proxy-war-cost-trace/test-prompts.json",
+      "test_case_count": 6,
+      "minimum_pass_rate": 0.8,
+      "tags": [
+        "proxy-war",
+        "cost-exchange",
+        "alignment",
+        "asymmetric-warfare"
+      ],
+      "sample_prompts": [
+        "这场代理人战争谁会先撑不住？",
+        "俄乌战争到底谁在买单？",
+        "who is paying for this proxy war?"
+      ]
+    },
+    {
+      "slug": "qige-analysis",
+      "name": "qige-analysis",
+      "title": "七哥分析方法论 · 总纲与路由",
+      "layer": "entry",
+      "origin": "v2",
+      "description": "",
+      "entrypoint": "skills/qige-analysis/SKILL.md",
+      "test_prompts": "skills/qige-analysis/test-prompts.json",
+      "test_case_count": 6,
+      "minimum_pass_rate": 0.8,
+      "tags": [
+        "methodology",
+        "router",
+        "meta",
+        "geopolitics",
+        "strategy"
+      ],
+      "sample_prompts": [
+        "用七哥的方法分析一下最近的美伊停火谈判。",
+        "七哥会怎么看日本现在这一系列动作？",
+        "他这套分析框架到底怎么运作的？给我一份可复用的流程。"
+      ]
+    },
+    {
+      "slug": "strategy-tactics-audit",
+      "name": "strategy-tactics-audit",
+      "title": "战略 / 战术分层审计",
+      "layer": "assessment",
+      "origin": "v2",
+      "description": "",
+      "entrypoint": "skills/strategy-tactics-audit/SKILL.md",
+      "test_prompts": "skills/strategy-tactics-audit/test-prompts.json",
+      "test_case_count": 6,
+      "minimum_pass_rate": 0.8,
+      "tags": [
+        "strategy",
+        "tactics",
+        "evaluation",
+        "institutions",
+        "cost"
+      ],
+      "sample_prompts": [
+        "它这次偷袭很成功，是不是就赢了？",
+        "两边谁占上风？",
+        "这套制度到底是优势还是包袱？"
+      ]
+    },
+    {
+      "slug": "structural-necessity-forecast",
+      "name": "structural-necessity-forecast",
+      "title": "结构必然性预测",
+      "layer": "constraint",
+      "origin": "v1",
+      "description": "",
+      "entrypoint": "skills/structural-necessity-forecast/SKILL.md",
+      "test_prompts": "skills/structural-necessity-forecast/test-prompts.json",
+      "test_case_count": 6,
+      "minimum_pass_rate": 0.8,
+      "tags": [
+        "prediction",
+        "structural-necessity",
+        "escalation",
+        "timing"
+      ],
+      "sample_prompts": [
+        "被逼到墙角的他会不会孤注一掷？",
+        "内塔尼亚胡会不会下台？",
+        "will X escalate when there is no way out?"
+      ]
+    },
+    {
+      "slug": "timing-window-cadence",
+      "name": "timing-window-cadence",
+      "title": "时间窗与节奏控制",
+      "layer": "constraint",
+      "origin": "v2",
+      "description": "",
+      "entrypoint": "skills/timing-window-cadence/SKILL.md",
+      "test_prompts": "skills/timing-window-cadence/test-prompts.json",
+      "test_case_count": 6,
+      "minimum_pass_rate": 0.8,
+      "tags": [
+        "timing",
+        "cadence",
+        "negotiation",
+        "elections",
+        "attrition"
+      ],
+      "sample_prompts": [
+        "中东这仗接下来什么时候升级？给我个时间窗口。",
+        "谈判谈了十几轮还没结果，到底谁在拖？",
+        "它三艘航母摆在那儿又不打，是虚张声势吗？"
+      ]
+    }
+  ],
+  "release": "public (no verbatim quotes)",
+  "sources_doc": "SOURCES.md"
+}

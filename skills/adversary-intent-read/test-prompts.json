@@ -1,0 +1,52 @@
+{
+  "skill": "adversary-intent-read",
+  "version": "0.1.0",
+  "source_book": "《七哥论国际：直播文字稿 2023-2026》 — 主播 七哥",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "它突然封锁海峡，到底想测什么？",
+      "expected_behavior": "激活本 skill，把封锁读作底牌试探，输出'它真正想要的是 X'并附证伪条件",
+      "notes": "典型正面：压力即试探"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "他今天说和伊朗妥协，昨天说要把伊朗打服，哪个是真的？",
+      "expected_behavior": "激活本 skill，按受众分栏解码，而不是判定'人格分裂'",
+      "notes": "典型正面：两套话分受众"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "它最厉害的那个手段为什么一直不用？",
+      "expected_behavior": "激活本 skill，反推约束条件（预期落空 → 推约束）",
+      "notes": "典型正面：缺席即信息"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "帮我查一下这个国家最近的外交声明全文。",
+      "expected_behavior": "不激活，本 skill 不用于纯信息检索，只用于意图推断",
+      "notes": "诱饵：涉外交但需求是检索"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "这事最后会怎么收场？",
+      "expected_behavior": "不激活本 skill，应激活 endgame-scripting",
+      "notes": "跨 skill 混淆诱饵：都涉及对手行为但问的是终局"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "它在示弱，是快崩了还是在钓鱼？",
+      "expected_behavior": "可激活，但需明确'示弱可能是欺骗'不等于'示弱一定是欺骗'，必须给出可检验的区分信号",
+      "notes": "边界：容易变成一切皆阴谋的过度解读"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case；should_not_trigger 容错为 0，且至少 1 条是同书兄弟 skill 的混淆诱饵。"
+}

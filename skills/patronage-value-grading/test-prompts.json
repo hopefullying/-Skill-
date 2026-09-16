@@ -1,0 +1,52 @@
+{
+  "skill": "patronage-value-grading",
+  "version": "0.1.0",
+  "source_book": "《七哥论国际：直播文字稿 2023-2026》 — 主播 七哥",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "现在要不要给它军援？",
+      "expected_behavior": "激活本 skill，先算统战价值（能否扛过首轮、是否造成有效杀伤），并追买单人",
+      "notes": "典型正面：援助时点判断"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "周边这个国家该拉拢还是该打压？",
+      "expected_behavior": "激活本 skill，先判'一盘棋'还是'家族利益集团'",
+      "notes": "典型正面：主体性质分级"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "这场消耗最后谁付账？",
+      "expected_behavior": "激活本 skill，追买单人并说明谁最先动摇",
+      "notes": "典型正面：谁买单"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "帮我列一下这个国家的人口和GDP数据。",
+      "expected_behavior": "不激活，本 skill 不做数据检索",
+      "notes": "诱饵：涉及国家但需求是数据"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "它下一步会对谁动手？",
+      "expected_behavior": "不激活本 skill，应激活 great-power-master-switch（已有存量 skill）",
+      "notes": "跨 skill 混淆诱饵：都涉及'对谁'"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "这个盟友是不是应该保它赢？",
+      "expected_behavior": "可激活，但必须提示'不败也不能赢'这条他自己承认'不好把控'，须给出抽手阈值",
+      "notes": "边界：建议本身带有失控风险"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case；should_not_trigger 容错为 0，且至少 1 条是同书兄弟 skill 的混淆诱饵。"
+}

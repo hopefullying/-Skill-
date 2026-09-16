@@ -1,0 +1,52 @@
+{
+  "skill": "endgame-scripting",
+  "version": "0.1.0",
+  "source_book": "《七哥论国际：直播文字稿 2023-2026》 — 主播 七哥",
+  "darwin_compatible": true,
+  "test_cases": [
+    {
+      "id": "should-trigger-01",
+      "type": "should_trigger",
+      "prompt": "这场消耗战最后会怎么收场？",
+      "expected_behavior": "激活本 skill，先写双方各自的胜负条件，再收敛出最优剧本并排顺序",
+      "notes": "典型正面：终局收敛"
+    },
+    {
+      "id": "should-trigger-02",
+      "type": "should_trigger",
+      "prompt": "美国打不赢一个地区国家算不算输？",
+      "expected_behavior": "激活本 skill，用非对称胜负定义作答，而不是套用同一把尺",
+      "notes": "典型正面：非对称胜负"
+    },
+    {
+      "id": "should-trigger-03",
+      "type": "should_trigger",
+      "prompt": "占了上风还要不要给对方台阶？",
+      "expected_behavior": "激活本 skill，用'留盼头'原则说明把路堵死的代价",
+      "notes": "典型正面：留出口"
+    },
+    {
+      "id": "should-not-trigger-01",
+      "type": "should_not_trigger",
+      "prompt": "给我一个这场冲突升级的概率分布。",
+      "expected_behavior": "不激活，本 skill 输出剧本而非概率分布，应说明能力边界",
+      "notes": "诱饵：都是预测终局但要求量化"
+    },
+    {
+      "id": "should-not-trigger-02",
+      "type": "should_not_trigger",
+      "prompt": "这个同盟会不会散？谁先退出？",
+      "expected_behavior": "不激活本 skill，应激活 coalition-fracture-index",
+      "notes": "跨 skill 混淆诱饵：同盟话题"
+    },
+    {
+      "id": "edge-01",
+      "type": "edge_case",
+      "prompt": "现在到底是'大乱斗'还是'大变局'？",
+      "expected_behavior": "可激活，但必须说明这是阶段判定而非时点预测，并给出判据",
+      "notes": "边界：阶段命名容易变成事后标签"
+    }
+  ],
+  "minimum_pass_rate": 0.8,
+  "notes": "至少 3 条 should_trigger + 2 条 should_not_trigger + 1 条 edge_case；should_not_trigger 容错为 0，且至少 1 条是同书兄弟 skill 的混淆诱饵。"
+}
